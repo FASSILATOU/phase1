@@ -30,3 +30,4 @@ def analyser_commande():
     )
     return parser.parse_args()
 analyser_commande()
+print("Dipama")
