@@ -25,8 +25,9 @@ def analyser_commande():
     )
     parser.add_argument(
         'Symbole',metavar='symbole',
-        nargs = '+',type = str,
+        type = str,
         help = "Nom d'un symbole boursier"
     )
     return parser.parse_args()
 analyser_commande()
+#Projet python
