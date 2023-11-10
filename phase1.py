@@ -30,16 +30,23 @@ def analyser_commande():
     parser.add_argument(
         'Symbole',metavar='symbole',
         type = str,
+        nargs = '+',
         help = "Nom d'un symbole boursier"
     )
     return parser.parse_args()
 analyser_commande()
-def produire_historique(symbole,début,fin,valeur):
-    dico1 = {}
-    Symbole = input('Veuillez entrer un symbole:')
-    url = f'https://pax.ulaval.ca/action{symbole}/historique/'
-    params = {début,fin}
-    réponse = requests.get(url = url,params = params)
-    réponse = json.loads(réponse.text)
-    dico1 = réponse['historique'][date]
-    return(f"titre={symbole}: valeur = {valeur},début = {début},fin = {fin}"+'\n'+ (date,valeur))#
+#def produire_historique(symbole,début,fin,valeur):
+#dico1 ={}
+#parser = analyser_commande()
+#for symbole in parser.symboles:
+ #   x = parser.debut
+#produire_historique(symbole,x,......)
+ #   Symbole = input('Veuillez entrer un symbole:')
+#    url = f'https://pax.ulaval.ca/action{symbole}/historique/'
+ #   params = {début,fin}
+ #  réponse = requests.get(url = url,params = params)
+ #   réponse = json.loads(réponse.text)
+ #   dico1 = réponse['historique'][date]
+ #   return(f"titre={symbole}: valeur = {valeur},début = {début},fin = {fin}"+'\n'+ (date,valeur))#
+ #preciser les cas particulier 
+ #utiliser un boucle pour la partie format affichage
