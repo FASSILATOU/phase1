@@ -1,7 +1,11 @@
 import argparse
 from datetime import date
+import json
+import requests
+
+
 def analyser_commande():
-    parser = argparse.ArgumentParser(description = 'Recuperation des donées historiques de titres boursiers')
+    parser = argparse.ArgumentParser(description = 'Recuperation des données historiques de titres boursiers')
     parser.add_argument(
         '-d','--début',
          metavar = 'Date',
@@ -29,5 +33,13 @@ def analyser_commande():
         help = "Nom d'un symbole boursier"
     )
     return parser.parse_args()
-analyser_commande()####
-print("DIPAMA")
+analyser_commande()
+def produire_historique(symbole,début,fin,valeur):
+    dico1 = {}
+    Symbole = input('Veuillez entrer un symbole:')
+    url = f'https://pax.ulaval.ca/action{symbole}/historique/'
+    params = {début,fin}
+    réponse = requests.get(url = url,params = params)
+    réponse = json.loads(réponse.text)
+    dico1 = réponse['historique'][date]
+    return(f"titre={symbole}: valeur = {valeur},début = {début},fin = {fin}"+'\n'+ (date,valeur))#
