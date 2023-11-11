@@ -10,12 +10,14 @@ def analyser_commande():
         '-d','--début',
          metavar = 'Date',
         type = date.fromisoformat,dest = 'début',
+        default='fin',
         help = 'Date recherchée la plus ancienne (format: AAAA-MM-JJ)'
     )
     parser.add_argument(
         '-f','--fin',
         metavar = 'Date',dest= 'fin',
         type=date.fromisoformat,
+        default=date.today(),
         help='Date recherchée la plus récente(format: AAAA-MM-JJ)'
     )
     parser.add_argument(
