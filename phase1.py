@@ -10,7 +10,7 @@ def analyser_commande():
         '-d','--début',
          metavar = 'Date',
         type = date.fromisoformat,dest = 'début',
-        default='fin',
+        default=None,
         help = 'Date recherchée la plus ancienne (format: AAAA-MM-JJ)'
     )
     parser.add_argument(
@@ -35,16 +35,17 @@ def analyser_commande():
         nargs = '+',
         help = "Nom d'un symbole boursier"
     )
-    return parser.parse_args()
+    parseur = parser.parse_args()
+    if parseur.debut == None:
+        parseur.debut = parseur.fin
+    return parseur
 analyser_commande()
-#def produire_historique(symbole,début,fin,valeur):
-#dico1 ={}
-#parser = analyser_commande()
-#for symbole in parser.symboles:
- #   x = parser.debut
-#produire_historique(symbole,x,......)
- #   Symbole = input('Veuillez entrer un symbole:')
-#    url = f'https://pax.ulaval.ca/action{symbole}/historique/'
+def produire_historique(symbole,début,fin,valeur):
+    dico1 ={}
+    parser = analyser_commande()
+    for symbole in parser.symboles:
+       Symbole = input('Veuillez entrer un symbole:')
+       url = f'https://pax.ulaval.ca/action{symbole}/historique/'
  #   params = {début,fin}
  #  réponse = requests.get(url = url,params = params)
  #   réponse = json.loads(réponse.text)
