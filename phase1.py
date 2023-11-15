@@ -39,15 +39,14 @@ def analyser_commande():
         parseur.début = parseur.fin
     return parseur
 analyser_commande()
-def produire_historique(symbole,début,fin,valeur):
-    parseur = analyser_commande()
-    symbole = parseur.symbole
-    début = parseur.début
-    fin = parseur.fin
-    valeur = parseur.valeur
-    for date in [début,fin]:
-       return(date,valeur)
-produire_historique()
+#def produire_historique(symbole,début,fin,valeur):
+ #   parseur = analyser_commande()
+ #   symbole = parseur.symbole
+  #  début = parseur.début
+  #  fin = parseur.fin
+  #  valeur = parseur.valeur
+  ##  for date in [début,fin]:
+   #    return(date,valeur)
 #def afficher_historique():
  #   parseur = analyser_commande()
 #    url = f'https://pax.ulaval.ca/action{parseur.symbole}/historique/'
