@@ -10,7 +10,6 @@ def analyser_commande():
         '-d','--début',
          metavar = 'Date',
         type = date.fromisoformat,dest = 'début',
-        default=None,
         help = 'Date recherchée la plus ancienne (format: AAAA-MM-JJ)'
     )
     parser.add_argument(
@@ -36,20 +35,25 @@ def analyser_commande():
         help = "Nom d'un symbole boursier"
     )
     parseur = parser.parse_args()
-    if parseur.debut == None:
-        parseur.debut = parseur.fin
+    if parseur.début is None:
+        parseur.début = parseur.fin
     return parseur
 analyser_commande()
 def produire_historique(symbole,début,fin,valeur):
-    dico1 ={}
-    parser = analyser_commande()
-    for symbole in parser.symboles:
-       Symbole = input('Veuillez entrer un symbole:')
-       url = f'https://pax.ulaval.ca/action{symbole}/historique/'
- #   params = {début,fin}
- #  réponse = requests.get(url = url,params = params)
- #   réponse = json.loads(réponse.text)
- #   dico1 = réponse['historique'][date]
- #   return(f"titre={symbole}: valeur = {valeur},début = {début},fin = {fin}"+'\n'+ (date,valeur))#
- #preciser les cas particulier 
- #utiliser un boucle pour la partie format affichage
+    parseur = analyser_commande()
+    symbole = parseur.symbole
+    début = parseur.début
+    fin = parseur.fin
+    valeur = parseur.valeur
+    for date in [début,fin]:
+       return(date,valeur)
+produire_historique()
+#def afficher_historique():
+ #   parseur = analyser_commande()
+#    url = f'https://pax.ulaval.ca/action{parseur.symbole}/historique/'
+#    params = {f"début:{parseur.début},fin:{parseur.fin}"}
+#    réponse = requests.get(url = url,params = params)
+#    réponse = json.loads(réponse.text)
+#    dico1 = réponse['historique'][date]
+ #   print(f"titre={parseur.symbole}: valeur = {parseur.valeur},début = {repr(parseur.début)},fin = {repr(parseur.fin)}")
+ #   print(produire_historique(repr(date),parseur.valeur))
