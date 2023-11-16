@@ -38,21 +38,20 @@ def analyser_commande():
     if parseur.début is None:
         parseur.début = parseur.fin
     return parseur
-analyser_commande()
-#def produire_historique(symbole,début,fin,valeur):
- #   parseur = analyser_commande()
- #   symbole = parseur.symbole
-  #  début = parseur.début
-  #  fin = parseur.fin
-  #  valeur = parseur.valeur
-  ##  for date in [début,fin]:
-   #    return(date,valeur)
-#def afficher_historique():
- #   parseur = analyser_commande()
-#    url = f'https://pax.ulaval.ca/action{parseur.symbole}/historique/'
-#    params = {f"début:{parseur.début},fin:{parseur.fin}"}
-#    réponse = requests.get(url = url,params = params)
-#    réponse = json.loads(réponse.text)
-#    dico1 = réponse['historique'][date]
- #   print(f"titre={parseur.symbole}: valeur = {parseur.valeur},début = {repr(parseur.début)},fin = {repr(parseur.fin)}")
- #   print(produire_historique(repr(date),parseur.valeur))
+def produire_historique(symbole,début,fin,valeur):
+    parseur = analyser_commande()
+    début = parseur.début
+    fin = parseur.fin
+    valeur = parseur.valeur
+    symbole = parseur.symbole
+    url = f'https://pax.ulaval.ca/action{symbole}/historique/'
+    params = {"début":début,"fin":fin}
+    réponse = requests.get(url=url,params=params)
+    réponse_1 = json.loads(réponse.text)
+    réponse_2 = [(repr(date),date["valeur"])for date in réponse_1["historique"].keys()]
+    return(réponse_2)
+if __name__=="__main__":
+    parseur = analyser_commande()
+    for symbole in parseur.symboles:
+        historique = produire_historique(symbole,parseur.début,parseur.fin,parseur.valeur)
+    print(historique)
