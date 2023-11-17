@@ -1,4 +1,3 @@
-"""Importation des modules necessaires"""
 import argparse
 from datetime import date
 import json
@@ -46,14 +45,14 @@ def produire_historique(symbole_2,debut_2,fin_2,valeur_2):
     """Definition d'une nouvelle fonction utile"""
     url = f'https://pax.ulaval.ca/action/{symbole_2}/historique/'
     params = {"début":debut_2,"fin":fin_2}
-    reponse = requests.get(url = url , params = params)
-    reponse = json.loads(réponse.text)
-    resultat = []
-    for dating in sorted(reponse['historique'].keys()):
-        resultat.append((date.fromisoformat(dating),reponse['historique'][dating][valeur_2]))  
-    return resultat
-if __name__=="__main__":
-    args = analyser_commande()
-    for symb in args.Symbole:
-        print(f"titre = {symb}: valeur = {args.valeur}, début ={args.début}, fin = {args.fin}")
-        print(produire_historique(symb,args.début,args.fin,args.valeur))
+    réponse = requests.get(url = url , params = params)
+    réponse = json.loads(réponse.text)
+    résultat = []
+    for dating in sorted(réponse['historique'].keys()):
+        résultat.append((date.fromisoformat(dating),réponse['historique'][dating][valeur_2]))  
+    return résultat
+
+#if __name__=="__main__":
+  #  args = analyser_commande()
+    #print(f"titre = {args.Symbole}: valeur = {args.valeur}, début ={args.début}, fin = {args.fin}")
+    #print(produire_historique(symbole_2,debut_2,fin_2,valeur_2))
