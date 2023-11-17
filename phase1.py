@@ -53,7 +53,7 @@ def produire_historique(symbole_2,debut_2,fin_2,valeur_2):
         résultat.append((date.fromisoformat(dating),réponse['historique'][dating][valeur_2]))  
     return résultat
 
-#if __name__=="__main__":
- #  args = analyser_commande()
- #  print(f"titre = {args.Symbole}: valeur = {args.valeur}, début ={args.début}, fin = {args.fin}")
-  # print(produire_historique(symbole_2,debut_2,fin_2,valeur_2))
+if __name__=="__main__":
+    args = analyser_commande()
+    print(f"titre = {args.Symbole}: valeur = {args.valeur}, début ={args.début}, fin = {args.fin}")
+    print(produire_historique(symbole_2,debut_2,fin_2,valeur_2))
