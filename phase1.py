@@ -1,3 +1,4 @@
+"""Importation des modules necessaires"""
 import argparse
 from datetime import date
 import json
@@ -5,7 +6,9 @@ import requests
 
 
 def analyser_commande():
-    parser = argparse.ArgumentParser(description = 'Recuperation des données historiques de titres boursiers')
+    """Etude avec le module argparse"""
+    parser = argparse.ArgumentParser(
+        description ='Recuperation des données historiques de titres boursiers')
     parser.add_argument(
         '-d','--début',
          metavar = 'Date',
@@ -38,20 +41,19 @@ def analyser_commande():
     if parseur.début is None:
         parseur.début = parseur.fin
     return parseur
-def produire_historique(symbole,début,fin,valeur):
-    parseur = analyser_commande()
-    début = parseur.début
-    fin = parseur.fin
-    valeur = parseur.valeur
-    symbole = parseur.symbole
-    url = f'https://pax.ulaval.ca/action{symbole}/historique/'
-    params = {"début":début,"fin":fin}
-    réponse = requests.get(url=url,params=params)
-    réponse_1 = json.loads(réponse.text)
-    réponse_2 = [(repr(date),date["valeur"])for date in réponse_1["historique"].keys()]
-    return(réponse_2)
-if __name__=="__main__":
-    parseur = analyser_commande()
-    for symbole in parseur.symboles:
-        historique = produire_historique(symbole,parseur.début,parseur.fin,parseur.valeur)
-    print(historique)
+
+def produire_historique(symbole_2,debut_2,fin_2,valeur_2):
+    """Definition d'une nouvelle fonction utile"""
+    url = f'https://pax.ulaval.ca/action/{symbole_2}/historique/'
+    params = {"début":debut_2,"fin":fin_2}
+    réponse = requests.get(url = url , params = params)
+    réponse = json.loads(réponse.text)
+    résultat = []
+    for dating in sorted(réponse['historique'].keys()):
+        résultat.append((date.fromisoformat(dating),réponse['historique'][dating][valeur_2]))  
+    return résultat
+
+#if __name__=="__main__":
+ #  args = analyser_commande()
+ #  print(f"titre = {args.Symbole}: valeur = {args.valeur}, début ={args.début}, fin = {args.fin}")
+  # print(produire_historique(symbole_2,debut_2,fin_2,valeur_2))
