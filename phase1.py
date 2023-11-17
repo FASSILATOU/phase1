@@ -58,7 +58,9 @@ def afficher_historique():
     """Defitin de afficher_historique pour mes affichages"""
     args = analyser_commande()
     for symb in args.Symbole:
-        print(f"titre = {symb}: valeur={args.valeur}, début={repr(args.début)}, fin={repr(args.fin)}")
+        print(
+            f"titre = {symb}: valeur={args.valeur}, début={repr(args.début)}, fin={repr(args.fin)}"
+        )
         print(produire_historique(symb,args.début,args.fin,args.valeur))
 
 if __name__=="__main__":
