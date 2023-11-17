@@ -10,9 +10,10 @@ def analyser_commande():
     parser = argparse.ArgumentParser(
         description ='Recuperation des données historiques de titres boursiers')
     parser.add_argument(
-        '-d','--début', 
-        metavar = 'Date', 
-        type = date.fromisoformat,dest = 'début', 
+        '-d','--début',
+        metavar = 'Date',
+        type = date.fromisoformat,
+        dest = 'début',
         help = 'Date recherchée la plus ancienne (format: AAAA-MM-JJ)'
     )
     parser.add_argument(
@@ -57,7 +58,7 @@ def afficher_historique():
     """Defitin de afficher_historique pour mes affichages"""
     args = analyser_commande()
     for symb in args.Symbole:
-        print(f"titre = {symb}: valeur = {args.valeur}, début ={repr(args.début)}, fin = {repr(args.fin)}")
+        print(f"titre = {symb}: valeur={args.valeur}, début={repr(args.début)}, fin={repr(args.fin)}")
         print(produire_historique(symb,args.début,args.fin,args.valeur))
 
 if __name__=="__main__":
