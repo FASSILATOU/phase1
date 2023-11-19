@@ -33,7 +33,7 @@ def analyser_commande():
         help = 'la valeur désirée(par défaut:fermeture)'
     )
     parser.add_argument(
-        'Symbole',metavar='symbole',
+        'symbole',metavar='symbole',
         type = str,
         nargs = '+',
         help = "Nom d'un symbole boursier"
@@ -47,7 +47,7 @@ def produire_historique(symbole_2,debut_2,fin_2,valeur_2):
     """Definition d'une nouvelle fonction utile"""
     url = f'https://pax.ulaval.ca/action/{symbole_2}/historique/'
     params = {"début":debut_2,"fin":fin_2}
-    reponse = requests.get(url = url , params = params)
+    reponse = requests.get(url = url , params = params, timeout = 5 )
     reponse = json.loads(reponse.text)
     resultat = []
     for dating in sorted(reponse['historique'].keys()):
@@ -57,7 +57,7 @@ def produire_historique(symbole_2,debut_2,fin_2,valeur_2):
 def afficher_historique():
     """Defitin de afficher_historique pour mes affichages"""
     args = analyser_commande()
-    for symb in args.Symbole:
+    for symb in args.symbole:
         print(
             f"titre = {symb}: valeur={args.valeur}, début={repr(args.début)}, fin={repr(args.fin)}"
         )
