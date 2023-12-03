@@ -9,16 +9,35 @@ class Portefeuille():
     """Definition de ma classe Portefeuille"""
     def __init__(self):
         self.bourse_2 = Bourse()
-        self.Somme_date = []
+        self.revenu = 0
+        self.dico = {}
+        self.symbole = 'goog'
+        self.dico_2 = {}
+        self.dico_0 = {}
+        self.dico_principale = {}
+        self.dico_valeur_totale = {}
+        self.dico_val = {}
+        self.dic_3 = {}
+        self.dico_valtotal = {}
+        self.somme = 0
+        self.som = 0
+        self.som1 = 0
+        self.valeur_2 = 0
+        self.valeur_projeter1=0
+        self.valeur=0
+        self.valeur_titre = 0
+        self.valeur_projeter=0
+        self.valeur_projeter2=0
+        self.val = 0
     def déposer(self,montant, date_2= date.today()):
         """Definition de la methode déposer"""
         ErreurDate().trouve_erreur(date_2)
-        if date_2 in self.dico:
-            self.Somme_date.append((date_2,montant))
+        if date_2 in self.dico_2:
+            self.dico_2[date_2] = self.dico_2.get(date_2)+montant
         else:
             self.dico[date_2] = montant
         self.revenu += montant
-        print(self.Somme_date)
+        print(self.dico)
         return self.dico
     def solde(self, date_2= date.today()):
         """definition d'une autre methode solde"""
